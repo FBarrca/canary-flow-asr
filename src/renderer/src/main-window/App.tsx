@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button, Card, Text, Title3 } from '@fluentui/react-components';
+import Pill from '@renderer/components/Pill';
 
 function App(): React.JSX.Element {
   const ipcHandle = (): void => window.electron.ipcRenderer.send('ping');
@@ -17,6 +18,7 @@ function App(): React.JSX.Element {
             Send IPC
           </Button>
         </div>
+        <Pill />
       </Card>
   );
 }

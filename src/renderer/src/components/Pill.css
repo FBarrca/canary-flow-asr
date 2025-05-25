@@ -5,7 +5,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  padding-bottom: 1.5rem; /* pb-6 */
+  padding-bottom: 0.5rem; /* pb-6 */
 }
 
 /* Button base */
