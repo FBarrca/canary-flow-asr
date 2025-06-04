@@ -1,10 +1,12 @@
-# canary-flow-asr
+# Canary Flow ASR
 
-An Electron application with React and TypeScript
+Canary Flow ASR is a desktop application that transcribes audio streams using Electron and React. The entire codebase is written in TypeScript.
 
-## Recommended IDE Setup
+## Features
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- **Automatic Updates** – the app uses `electron-updater` to keep itself current.
+- **Fluent UI Components** – the renderer window is built with Microsoft Fluent UI.
+- **Overlay & Main Windows** – separate windows provide controls and status information.
 
 ## Project Setup
 
@@ -32,3 +34,15 @@ $ npm run build:mac
 # For Linux
 $ npm run build:linux
 ```
+
+## Project Structure
+
+Source code is organized under `src` into `main`, `preload`, and `renderer` directories. Tests live alongside the source files and run with [Vitest](https://vitest.dev).
+
+## Codex Integration
+
+Guidelines for working with this repository using the OpenAI Codex agent are available in [AGENTS.md](./AGENTS.md).
+
+## Contributing
+
+Pull requests are welcome. Please ensure formatting, linting and tests pass before submitting your changes.
