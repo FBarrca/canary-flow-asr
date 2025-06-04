@@ -4,6 +4,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
 import { FluentProvider, webDarkTheme } from '@fluentui/react-components'
+import TranscriptionSettingsFluent from '@renderer/main-window/Settings'
 
 const rootElement = document.getElementById('root')
 if (!rootElement) {
@@ -15,9 +16,8 @@ const root = createRoot(rootElement)
 
 root.render(
   <StrictMode>
-        <FluentProvider theme={webDarkTheme}>
-
-    <App />
+    <FluentProvider theme={webDarkTheme} style={{ height: '100%', width: '100%' }}>
+      <TranscriptionSettingsFluent />
     </FluentProvider>
 
   </StrictMode>
