@@ -4,11 +4,12 @@ import { Label, Dropdown, Option, Slider, Switch, Badge, Text, Divider } from "@
 import { TextGrammarWand24Regular } from "@fluentui/react-icons";
 import SectionCard from "./Sectioncard";
 import Row from "./Row";
+import { useSettings } from "../../hooks/useSettings";
 
 const TranscriptionSettings: React.FC = () => {
-  // Add the use of React state for confidence and punctuation
-  const [confidence, setConfidence] = React.useState<number>(80);
-  const [punctuation, setPunctuation] = React.useState<boolean>(true);
+  const { settings, setSetting } = useSettings();
+  const [confidence, setConfidence] = React.useState<number>(settings.confidence ?? 80);
+  const [punctuation, setPunctuation] = React.useState<boolean>(settings.punctuation ?? true);
 
   return (
     <SectionCard
@@ -64,7 +65,11 @@ const TranscriptionSettings: React.FC = () => {
           <Label>Confidence Threshold</Label>
           <Slider
             value={confidence}
-            onChange={(_, data) => setConfidence(data.value as number)}
+            onChange={(_, data) => {
+              const val = data.value as number;
+              setConfidence(val);
+              setSetting('confidence', val);
+            }}
             max={100}
             step={5}
           />
@@ -98,7 +103,10 @@ const TranscriptionSettings: React.FC = () => {
             </div>
             <Switch
               checked={punctuation}
-              onChange={(_, data) => setPunctuation(data.checked)}
+              onChange={(_, data) => {
+                setPunctuation(data.checked);
+                setSetting('punctuation', data.checked);
+              }}
               aria-label="Auto punctuation"
             />
           </Row>

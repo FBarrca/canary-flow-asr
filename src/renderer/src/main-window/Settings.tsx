@@ -14,9 +14,11 @@ import TranscriptionSettings from "@renderer/main-window/Settings/Transcription"
 import OutputSettings from "@renderer/main-window/Settings/Output";
 import ShortcutsSettings from "@renderer/main-window/Settings/Shortcuts";
 import PrivacySettings from "@renderer/main-window/Settings/Privacy";
+import { useSettings } from "../hooks/useSettings";
 
 export default function TranscriptionSettingsFluent() {
   // --- state --------------------------------------------------------------
+  const { saveSettings } = useSettings();
   const [selectedTab, setSelectedTab] = React.useState<
     "audio" | "transcription" | "output" | "shortcuts" | "privacy"
   >("audio");
@@ -165,7 +167,7 @@ export default function TranscriptionSettingsFluent() {
         {/* Right: Buttons */}
         <div style={{ display: "flex", gap: 12 }}>
           <Button appearance="secondary">Reset to Defaults</Button>
-          <Button appearance="primary">Save Settings</Button>
+          <Button appearance="primary" onClick={saveSettings}>Save Settings</Button>
         </div>
       </div>
     </div>
