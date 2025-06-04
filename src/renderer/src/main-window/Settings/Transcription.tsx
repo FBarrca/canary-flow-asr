@@ -1,14 +1,21 @@
-
-import React from "react";
-import { Label, Dropdown, Option, Slider, Switch, Badge, Text, Divider } from "@fluentui/react-components";
-import { TextGrammarWand24Regular } from "@fluentui/react-icons";
-import SectionCard from "./Sectioncard";
-import Row from "./Row";
+import React from 'react'
+import {
+  Label,
+  Dropdown,
+  Option,
+  Slider,
+  Switch,
+  Badge,
+  Text,
+  Divider
+} from '@fluentui/react-components'
+import { TextGrammarWand24Regular } from '@fluentui/react-icons'
+import SectionCard from './Sectioncard'
+import Row from './Row'
+import { useSettings } from '../../hooks/useSettings'
 
 const TranscriptionSettings: React.FC = () => {
-  // Add the use of React state for confidence and punctuation
-  const [confidence, setConfidence] = React.useState<number>(80);
-  const [punctuation, setPunctuation] = React.useState<boolean>(true);
+  const { settings, setSetting } = useSettings()
 
   return (
     <SectionCard
@@ -16,21 +23,21 @@ const TranscriptionSettings: React.FC = () => {
       title="Language & Model"
       description="Configure transcription language and model settings"
     >
-      <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 24 }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Label>Primary Language</Label>
           <Dropdown placeholder="Select language" style={{ width: 220 }}>
             {[
-              ["en", "English"],
-              ["es", "Spanish"],
-              ["fr", "French"],
-              ["de", "German"],
-              ["it", "Italian"],
-              ["pt", "Portuguese"],
-              ["ru", "Russian"],
-              ["ja", "Japanese"],
-              ["ko", "Korean"],
-              ["zh", "Chinese"],
+              ['en', 'English'],
+              ['es', 'Spanish'],
+              ['fr', 'French'],
+              ['de', 'German'],
+              ['it', 'Italian'],
+              ['pt', 'Portuguese'],
+              ['ru', 'Russian'],
+              ['ja', 'Japanese'],
+              ['ko', 'Korean'],
+              ['zh', 'Chinese']
             ].map(([val, label]) => (
               <Option key={val} value={val}>
                 {label}
@@ -39,7 +46,7 @@ const TranscriptionSettings: React.FC = () => {
           </Dropdown>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Label>Transcription Model</Label>
           <Dropdown placeholder="Select model" style={{ width: 220 }}>
             <Option value="whisper-base" text="Whisper Base">
@@ -60,24 +67,27 @@ const TranscriptionSettings: React.FC = () => {
           </Text>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Label>Confidence Threshold</Label>
           <Slider
-            value={confidence}
-            onChange={(_, data) => setConfidence(data.value as number)}
+            value={settings.confidence ?? 80}
+            onChange={(_, data) => {
+              const val = data.value as number
+              setSetting('confidence', val)
+            }}
             max={100}
             step={5}
           />
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: 'flex',
+              justifyContent: 'space-between',
               fontSize: 12,
-              opacity: 0.6,
+              opacity: 0.6
             }}
           >
             <span>0%</span>
-            <span>{confidence}%</span>
+            <span>{settings.confidence ?? 80}%</span>
             <span>100%</span>
           </div>
           <Text size={200} style={{ opacity: 0.6 }}>
@@ -87,25 +97,25 @@ const TranscriptionSettings: React.FC = () => {
 
         <Divider />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <h4 style={{ fontWeight: 500 }}>Processing Options</h4>
           <Row>
             <div>
               <Label>Auto Punctuation</Label>
-              <p style={{ fontSize: 12, opacity: 0.6 }}>
-                Automatically add punctuation marks
-              </p>
+              <p style={{ fontSize: 12, opacity: 0.6 }}>Automatically add punctuation marks</p>
             </div>
             <Switch
-              checked={punctuation}
-              onChange={(_, data) => setPunctuation(data.checked)}
+              checked={settings.punctuation ?? true}
+              onChange={(_, data) => {
+                setSetting('punctuation', data.checked)
+              }}
               aria-label="Auto punctuation"
             />
           </Row>
         </div>
       </div>
     </SectionCard>
-  );
-};
+  )
+}
 
-export default TranscriptionSettings;
+export default TranscriptionSettings
