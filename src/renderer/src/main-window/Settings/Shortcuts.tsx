@@ -20,8 +20,13 @@ const ShortcutsSettings: React.FC = () => {
 
     const handleKeyCapture = (event: KeyboardEvent) => {
         const key = event.key.toLowerCase();
-        setCapturedKeys([...capturedKeys, key]);
+        setCapturedKeys(prev => prev.includes(key) ? prev : [...prev, key]);
     };
+    React.useEffect(() => {
+        if (editingShortcut === null) return;
+        window.addEventListener("keydown", handleKeyCapture);
+        return () => window.removeEventListener("keydown", handleKeyCapture);
+    }, [editingShortcut]);
 
     const cancelShortcut = () => {
         setEditingShortcut(null);
