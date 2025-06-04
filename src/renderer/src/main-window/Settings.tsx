@@ -33,9 +33,16 @@ export default function TranscriptionSettingsFluent() {
           overflow: "hidden",
         }}
       >
-        <div style={{ maxWidth: 960, margin: "0 auto", }}>
-       
-
+        <div
+          style={{
+            maxWidth: 960,
+            margin: "0 auto",
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            minHeight: 0,
+          }}
+        >
           <TabList
             size="large"
             selectedValue={selectedTab}
