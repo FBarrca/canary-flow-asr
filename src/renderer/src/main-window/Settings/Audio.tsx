@@ -9,10 +9,12 @@ import {
 import { Mic24Regular } from "@fluentui/react-icons";
 import SectionCard from "./Sectioncard";
 import Row from "./Row";
+import { useSettings } from "../../hooks/useSettings";
 
 const AudioSettings: React.FC = () => {
+  const { settings, setSetting } = useSettings();
   const [devices, setDevices] = React.useState<MediaDeviceInfo[]>([]);
-  const [selectedDevice, setSelectedDevice] = React.useState<string | undefined>();
+  const [selectedDevice, setSelectedDevice] = React.useState<string | undefined>(settings.inputDevice);
 
   React.useEffect(() => {
     async function loadDevices() {
@@ -37,7 +39,9 @@ const AudioSettings: React.FC = () => {
   }, []);
 
   const handleSelect = (_: any, data: any) => {
-    setSelectedDevice(data.optionValue as string);
+    const value = data.optionValue as string;
+    setSelectedDevice(value);
+    setSetting('inputDevice', value);
   };
 
   return (

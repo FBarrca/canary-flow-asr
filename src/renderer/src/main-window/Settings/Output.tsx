@@ -5,11 +5,12 @@ import { Label, Dropdown, Option, Input, Switch, Button, Text, Divider } from "@
 import { Folder24Regular } from "@fluentui/react-icons";
 import SectionCard from "./Sectioncard";
 import Row from "./Row";
+import { useSettings } from "../../hooks/useSettings";
 
 
 const OutputSettings: React.FC = () => {
-    // Add the use of React state for confidence and punctuation
-    const [autoSave, setAutoSave] = React.useState<boolean>(false);
+    const { settings, setSetting } = useSettings();
+    const [autoSave, setAutoSave] = React.useState<boolean>(settings.autoSave ?? false);
 
     return (<SectionCard
         icon={<Folder24Regular />}
@@ -72,7 +73,10 @@ const OutputSettings: React.FC = () => {
                     </div>
                     <Switch
                         checked={autoSave}
-                        onChange={(_, data) => setAutoSave(data.checked)}
+                        onChange={(_, data) => {
+                            setAutoSave(data.checked);
+                            setSetting('autoSave', data.checked);
+                        }}
                         aria-label="Auto save"
                     />
                 </Row>

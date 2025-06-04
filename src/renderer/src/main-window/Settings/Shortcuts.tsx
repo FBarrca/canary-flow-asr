@@ -3,11 +3,13 @@ import { Label, Switch, Badge, Text, Divider, Dialog, DialogSurface, DialogBody,
 import { Keyboard24Regular } from "@fluentui/react-icons";
 import SectionCard from "./Sectioncard";
 import Row from "./Row";
+import { useSettings } from "../../hooks/useSettings";
 
 const ShortcutsSettings: React.FC = () => {
+    const { settings, setSetting } = useSettings();
 
     const [editingShortcut, setEditingShortcut] = React.useState<string | null>(null);
-    const [shortcuts, setShortcuts] = React.useState<Record<string, string>>({
+    const [shortcuts, setShortcuts] = React.useState<Record<string, string>>(settings.shortcuts || {
         startStop: "Ctrl+Shift+R",
         pauseResume: "Ctrl+Shift+P",
         save: "Ctrl+Shift+S",
@@ -35,7 +37,9 @@ const ShortcutsSettings: React.FC = () => {
 
     const saveShortcut = () => {
         if (capturedKeys.length > 0) {
-            setShortcuts({ ...shortcuts, [editingShortcut as string]: capturedKeys.join(" + ") });
+            const updated = { ...shortcuts, [editingShortcut as string]: capturedKeys.join(" + ") };
+            setShortcuts(updated);
+            setSetting('shortcuts', updated);
             setEditingShortcut(null);
             setCapturedKeys([]);
         }
