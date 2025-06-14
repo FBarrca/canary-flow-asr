@@ -1,0 +1,34 @@
+name: Build Application
+
+on:
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+      - run: npm install
+      - run: npm run format
+      - run: npm run lint
+      - run: npm test
+      - run: npm run build:linux
+      - uses: actions/upload-artifact@v4
+        # artifact is available in the workflow run's "Artifacts" section
+        with:
+          name: linux-build
+          path: dist/
+      - name: Comment artifact link on PR
+        if: github.event_name == 'pull_request'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            Build artifact for this PR: [link](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts)

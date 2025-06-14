@@ -17,21 +17,21 @@ const TranscriptionSettings: React.FC = () => {
       title="Language & Model"
       description="Configure transcription language and model settings"
     >
-      <div style={{ padding: 24, display: "flex", flexDirection: "column", gap: 24 }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      <div style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 24 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Label>Primary Language</Label>
           <Dropdown placeholder="Select language" style={{ width: 220 }}>
             {[
-              ["en", "English"],
-              ["es", "Spanish"],
-              ["fr", "French"],
-              ["de", "German"],
-              ["it", "Italian"],
-              ["pt", "Portuguese"],
-              ["ru", "Russian"],
-              ["ja", "Japanese"],
-              ["ko", "Korean"],
-              ["zh", "Chinese"],
+              ['en', 'English'],
+              ['es', 'Spanish'],
+              ['fr', 'French'],
+              ['de', 'German'],
+              ['it', 'Italian'],
+              ['pt', 'Portuguese'],
+              ['ru', 'Russian'],
+              ['ja', 'Japanese'],
+              ['ko', 'Korean'],
+              ['zh', 'Chinese']
             ].map(([val, label]) => (
               <Option key={val} value={val}>
                 {label}
@@ -40,7 +40,7 @@ const TranscriptionSettings: React.FC = () => {
           </Dropdown>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Label>Transcription Model</Label>
           <Dropdown placeholder="Select model" style={{ width: 220 }}>
             <Option value="whisper-base" text="Whisper Base">
@@ -61,7 +61,7 @@ const TranscriptionSettings: React.FC = () => {
           </Text>
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           <Label>Confidence Threshold</Label>
           <Slider
             value={confidence}
@@ -75,10 +75,10 @@ const TranscriptionSettings: React.FC = () => {
           />
           <div
             style={{
-              display: "flex",
-              justifyContent: "space-between",
+              display: 'flex',
+              justifyContent: 'space-between',
               fontSize: 12,
-              opacity: 0.6,
+              opacity: 0.6
             }}
           >
             <span>0%</span>
@@ -92,14 +92,12 @@ const TranscriptionSettings: React.FC = () => {
 
         <Divider />
 
-        <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
           <h4 style={{ fontWeight: 500 }}>Processing Options</h4>
           <Row>
             <div>
               <Label>Auto Punctuation</Label>
-              <p style={{ fontSize: 12, opacity: 0.6 }}>
-                Automatically add punctuation marks
-              </p>
+              <p style={{ fontSize: 12, opacity: 0.6 }}>Automatically add punctuation marks</p>
             </div>
             <Switch
               checked={punctuation}
@@ -113,7 +111,7 @@ const TranscriptionSettings: React.FC = () => {
         </div>
       </div>
     </SectionCard>
-  );
-};
+  )
+}
 
-export default TranscriptionSettings;
+export default TranscriptionSettings

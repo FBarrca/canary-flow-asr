@@ -7,14 +7,14 @@ export function setupIpcHandlers(): void {
     console.log('pong')
     event.reply('pong')
   })
-  
+
   ipcMain.on('theme-changed', (_, newTheme: string) => {
     // Forward the theme change to all windows
-    BrowserWindow.getAllWindows().forEach(window => {
+    BrowserWindow.getAllWindows().forEach((window) => {
       window.webContents.send('theme-changed', newTheme)
     })
   })
-  
+
   ipcMain.on('save-settings', (_, settings: Partial<Settings>) => {
     saveSettings(settings)
   })
@@ -31,11 +31,11 @@ export function setupIpcHandlers(): void {
   try {
     onSettingsChange((key, value) => {
       // Forward settings changes to all windows
-      BrowserWindow.getAllWindows().forEach(window => {
+      BrowserWindow.getAllWindows().forEach((window) => {
         window.webContents.send('settings-changed', { key, value })
       })
     })
   } catch (error) {
     console.error('Error setting up store change listeners:', error)
   }
-} 
+}

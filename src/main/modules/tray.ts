@@ -27,4 +27,4 @@ export function createTray(): void {
 
 export function getTray(): Tray | null {
   return tray
-} 
+}

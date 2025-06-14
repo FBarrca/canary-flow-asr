@@ -8,14 +8,14 @@ export function createOverlayWindow(): void {
   if (overlayWindow) return
 
   const { width, height } = screen.getPrimaryDisplay().workAreaSize
-  const overlayWidth  = 180
+  const overlayWidth = 180
   const overlayHeight = 65
 
   overlayWindow = new BrowserWindow({
-    width:  overlayWidth,
+    width: overlayWidth,
     height: overlayHeight,
-    x: Math.round((width  - overlayWidth ) / 2),
-    y: Math.round(height - overlayHeight ),
+    x: Math.round((width - overlayWidth) / 2),
+    y: Math.round(height - overlayHeight),
     transparent: true,
     frame: false,
     alwaysOnTop: true,
@@ -45,12 +45,14 @@ export function createOverlayWindow(): void {
     overlayWindow?.showInactive()
   })
 
-  overlayWindow.on('closed', () => { overlayWindow = null })
+  overlayWindow.on('closed', () => {
+    overlayWindow = null
+  })
 }
 
 export function getOverlayWindow() {
   return overlayWindow
-} 
+}
 
 export function toggleOverlay() {
   if (!overlayWindow) return

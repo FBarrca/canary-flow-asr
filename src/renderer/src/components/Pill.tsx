@@ -1,11 +1,9 @@
-"use client"
+'use client'
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import {
-  Tooltip
-} from "@fluentui/react-components"
-import "./Pill.css"
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Tooltip } from '@fluentui/react-components'
+import './Pill.css'
 
 export default function Component() {
   const [isHovered, setIsHovered] = useState(false)
@@ -16,9 +14,9 @@ export default function Component() {
       transition: {
         duration: 1.5,
         repeat: Infinity,
-        ease: "easeInOut",
-      },
-    },
+        ease: 'easeInOut'
+      }
+    }
   }
 
   // Button size + scale variants
@@ -28,22 +26,22 @@ export default function Component() {
       height: 8,
       scale: 1,
       transition: {
-        type: "spring",
+        type: 'spring',
         stiffness: 300,
         damping: 20,
-        delay: 0.2,      // ← wait for dots to exit (0.2s)
-      },
+        delay: 0.2 // ← wait for dots to exit (0.2s)
+      }
     },
     hover: {
       width: 64,
       height: 24,
       scale: 1.05,
       transition: {
-        type: "spring",
+        type: 'spring',
         stiffness: 300,
-        damping: 20,
-      },
-    },
+        damping: 20
+      }
+    }
   }
 
   return (
@@ -53,7 +51,7 @@ export default function Component() {
           className="btn"
           variants={buttonVariants}
           initial="rest"
-          animate={isHovered ? "hover" : "rest"}
+          animate={isHovered ? 'hover' : 'rest'}
           onHoverStart={() => setIsHovered(true)}
           onHoverEnd={() => setIsHovered(false)}
         >
@@ -65,7 +63,7 @@ export default function Component() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}  // ← faster fade out
+                transition={{ duration: 0.2 }} // ← faster fade out
               >
                 {[...Array(4)].map((_, i) => (
                   <motion.div
@@ -76,7 +74,7 @@ export default function Component() {
                     animate="animate"
                     transition={{
                       ...waveformVariants.animate.transition,
-                      delay: 0.5 + i * 0.1, // same pop‐in delay as before
+                      delay: 0.5 + i * 0.1 // same pop‐in delay as before
                     }}
                   />
                 ))}

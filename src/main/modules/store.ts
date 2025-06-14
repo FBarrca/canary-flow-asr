@@ -74,7 +74,7 @@ export function onSettingsChange(callback: (key: string, value: any) => void) {
     'confidence',
     'punctuation'
   ]
-  keys.forEach((key) => {
+  keys.forEach(key => {
     // Use the correct method signature for onDidChange
     store.onDidChange(key.toString(), (newValue: any) => {
       callback(key.toString(), newValue)

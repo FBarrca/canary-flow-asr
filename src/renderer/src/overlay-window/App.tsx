@@ -19,6 +19,18 @@ function App(): React.JSX.Element {
         boxShadow: 'none'
       }}
     >
+    <div
+      style={{
+        minWidth: 360,
+        padding: 32,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 20,
+        alignItems: 'center',
+        background: 'transparent',
+        boxShadow: 'none'
+      }}
+    >
       <Title3>OVERLAY</Title3>
       <Text>
         Build an Electron app with <b>React</b> and <b>TypeScript</b> using Fluent UI.
@@ -37,6 +49,8 @@ function App(): React.JSX.Element {
       </div>
     </div>
   )
+  )
 }
 
+export default App
 export default App

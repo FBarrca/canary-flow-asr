@@ -1,7 +1,7 @@
-"use client";
+'use client'
 
-import * as React from "react";
-import { Button, TabList, Tab } from "@fluentui/react-components";
+import * as React from 'react'
+import { Button, TabList, Tab } from '@fluentui/react-components'
 import {
   Mic24Regular,
   DocumentText24Regular,
@@ -20,29 +20,29 @@ export default function TranscriptionSettingsFluent() {
   // --- state --------------------------------------------------------------
   const { saveSettings } = useSettings();
   const [selectedTab, setSelectedTab] = React.useState<
-    "audio" | "transcription" | "output" | "shortcuts" | "privacy"
-  >("audio");
+    'audio' | 'transcription' | 'output' | 'shortcuts' | 'privacy'
+  >('audio')
 
   // --- main ---------------------------------------------------------------
   return (
-    <div style={{ display: "flex", flexDirection: "column", height: "100vh" }}>
+    <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
       <div
         style={{
           flex: 1,
-          display: "flex",
-          flexDirection: "column",
+          display: 'flex',
+          flexDirection: 'column',
           minHeight: 0, // ← allow its children to shrink
-          overflow: "hidden",
+          overflow: 'hidden'
         }}
       >
         <div
           style={{
             maxWidth: 960,
-            margin: "0 auto",
+            margin: '0 auto',
             flex: 1,
-            display: "flex",
-            flexDirection: "column",
-            minHeight: 0,
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: 0
           }}
         >
           <TabList
@@ -51,9 +51,9 @@ export default function TranscriptionSettingsFluent() {
             onTabSelect={(_, data) => setSelectedTab(data.value as any)}
             style={{
               marginBottom: 24,
-              display: "grid",
-              gridTemplateColumns: "repeat(5, 1fr)",
-              gap: 4,
+              display: 'grid',
+              gridTemplateColumns: 'repeat(5, 1fr)',
+              gap: 4
             }}
           >
             <Tab icon={<Mic24Regular />} value="audio">
@@ -74,13 +74,13 @@ export default function TranscriptionSettingsFluent() {
           </TabList>
 
           {/* AUDIO */}
-          {selectedTab === "audio" && (
+          {selectedTab === 'audio' && (
             <div
               style={{
                 flex: 1,
-                display: "flex",
+                display: 'flex',
                 minHeight: 0, // ← allow SectionCard to size correctly
-                overflow: "hidden",
+                overflow: 'hidden'
               }}
             >
               <AudioSettings />
@@ -88,13 +88,13 @@ export default function TranscriptionSettingsFluent() {
           )}
 
           {/* TRANSCRIPTION */}
-          {selectedTab === "transcription" && (
+          {selectedTab === 'transcription' && (
             <div
               style={{
                 flex: 1,
-                display: "flex",
+                display: 'flex',
                 minHeight: 0,
-                overflow: "hidden",
+                overflow: 'hidden'
               }}
             >
               <TranscriptionSettings />
@@ -102,13 +102,13 @@ export default function TranscriptionSettingsFluent() {
           )}
 
           {/* OUTPUT */}
-          {selectedTab === "output" && (
+          {selectedTab === 'output' && (
             <div
               style={{
                 flex: 1,
-                display: "flex",
+                display: 'flex',
                 minHeight: 0,
-                overflow: "hidden",
+                overflow: 'hidden'
               }}
             >
               <OutputSettings />
@@ -116,13 +116,13 @@ export default function TranscriptionSettingsFluent() {
           )}
 
           {/* SHORTCUTS */}
-          {selectedTab === "shortcuts" && (
+          {selectedTab === 'shortcuts' && (
             <div
               style={{
                 flex: 1,
-                display: "flex",
+                display: 'flex',
                 minHeight: 0,
-                overflow: "hidden",
+                overflow: 'hidden'
               }}
             >
               <ShortcutsSettings />
@@ -130,13 +130,13 @@ export default function TranscriptionSettingsFluent() {
           )}
 
           {/* PRIVACY */}
-          {selectedTab === "privacy" && (
+          {selectedTab === 'privacy' && (
             <div
               style={{
                 flex: 1,
-                display: "flex",
+                display: 'flex',
                 minHeight: 0,
-                overflow: "hidden",
+                overflow: 'hidden'
               }}
             >
               <PrivacySettings />
@@ -147,29 +147,27 @@ export default function TranscriptionSettingsFluent() {
       {/* Footer actions */}
       <div
         style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          borderTop: "1px solid var(--colorNeutralStroke2)",
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          borderTop: '1px solid var(--colorNeutralStroke2)',
           padding: 24,
-          background: "var(--colorNeutralBackground1)",
+          background: 'var(--colorNeutralBackground1)'
         }}
       >
         {/* Left: Heading and Description */}
-        <div style={{ textAlign: "left" }}>
-          <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 4 }}>
-            Canary Flow Settings
-          </h1>
+        <div style={{ textAlign: 'left' }}>
+          <h1 style={{ fontSize: 24, fontWeight: 600, marginBottom: 4 }}>Canary Flow Settings</h1>
           <p style={{ opacity: 0.6, marginBottom: 0 }}>
             Configure your local voice transcription preferences
           </p>
         </div>
         {/* Right: Buttons */}
-        <div style={{ display: "flex", gap: 12 }}>
+        <div style={{ display: 'flex', gap: 12 }}>
           <Button appearance="secondary">Reset to Defaults</Button>
           <Button appearance="primary" onClick={saveSettings}>Save Settings</Button>
         </div>
       </div>
     </div>
-  );
+  )
 }
